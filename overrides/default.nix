@@ -2300,6 +2300,12 @@ lib.composeManyExtensions [
         propagatedBuildInputs = (old.propagatedBuildInputs or [ ]) ++ [ self.setuptools ];
       });
 
+      pypika = super.pypika.overridePythonAttrs (
+        old: {
+          buildInputs = (old.buildInputs or [ ]) ++ [ super.setuptools ];
+        }
+      );
+
       sphinxcontrib-applehelp = super.sphinxcontrib-applehelp.overridePythonAttrs (old: {
         propagatedBuildInputs = removePackagesByName (old.propagatedBuildInputs or [ ]) [ self.sphinx ];
       });
